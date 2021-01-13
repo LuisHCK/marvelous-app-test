@@ -3,24 +3,29 @@ import PropTypes from 'prop-types'
 import NavBar from '../navbar'
 // Base styles
 import '../../assets/scss/base/base.scss'
+import Footer from '../footer'
 
+export default function Layout({ children, useNavBar, useFooter }) {
+    const renderNavBar = () => (useNavBar ? <NavBar /> : null)
 
-export default function Layout({ children, withNavBar }) {
-    const renderNavBar = () => (withNavBar ? <NavBar /> : null)
+    const renderFooter = () => (useFooter ? <Footer /> : null)
 
     return (
         <Fragment>
             {renderNavBar()}
             {children}
+            {renderFooter()}
         </Fragment>
     )
 }
 
 Layout.propTypes = {
     children: PropTypes.node.isRequired,
-    withNavBar: PropTypes.bool,
+    useNavBar: PropTypes.bool,
+    useFooter: PropTypes.bool,
 }
 
 Layout.defaultProps = {
-    withNavBar: false,
+    useNavBar: false,
+    useFooter: false,
 }
