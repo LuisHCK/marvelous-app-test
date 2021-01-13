@@ -1,0 +1,33 @@
+@import '../../base/variables';
+
+.NavBar {
+    display: flex;
+    flex-direction: column;
+    background-size: cover;
+    height: 64px;
+    background-color: $dark;
+    justify-content: center;
+
+    &-menu {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &-menuItem {
+        text-align: center;
+        list-style: none;
+    }
+
+    &-link {
+        color: $light;
+        font-size: 1.2rem;
+        font-weight: 500;
+        font-family: $secondary-font;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+}
