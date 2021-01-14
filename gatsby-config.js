@@ -1,9 +1,10 @@
 module.exports = {
     siteMetadata: {
-        title: 'marvelous-app-test',
-        description: 'Marvelous App',
+        title: 'Marvelous App',
+        description:
+            'Introducing the Marvelous app, a revolutionary new way to experience the Marvel Universe on any device',
         author: '@marvelousappinc',
-        siteUrl: 'http://localhost:8000'
+        siteUrl: 'http://localhost:8000',
     },
     plugins: [
         'gatsby-plugin-sass',
@@ -29,7 +30,6 @@ module.exports = {
                 theme_color: `#663399`,
                 display: `minimal-ui`,
                 icon: `src/images/gatsby-icon.png`,
-        
             },
             __key: 'images',
         },
