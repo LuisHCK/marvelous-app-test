@@ -7,8 +7,10 @@ import '../assets/scss/pages/home/home.scss'
 const ComicCard = loadable(() => import('../components/comics/comic-card'))
 const Seo = loadable(() => import('../components/seo'))
 const Layout = loadable(() => import('../components/layout'))
+const Spinner = loadable(() => import('../components/spinner'))
 
 export default function IndexPage() {
+    const [loadingState, setLoadingState] = useState({ featured: true })
     const [featuredComics, setFeaturedComics] = useState([])
 
     useEffect(() => {
@@ -17,9 +19,12 @@ export default function IndexPage() {
     }, [])
 
     const getFeaturedComics = async () => {
-        const { data } = await getComics({ limit: 5 })
+        const { data } = await getComics({ limit: 5, orderBy: 'focDate' })
 
         setFeaturedComics(data?.data.results)
+        setLoadingState((prev) => {
+            return { ...prev, featured: false }
+        })
     }
 
     const renderComicCards = () =>
@@ -31,6 +36,8 @@ export default function IndexPage() {
             />
         ))
 
+    const renderSpinner = () => (loadingState.featured ? <Spinner /> : null)
+
     return (
         <Fragment>
             <Layout useNavBar useFooter>
@@ -40,8 +47,10 @@ export default function IndexPage() {
                     <h1>Home Page</h1>
 
                     <div className="HomePage-featuredComics">
+                        {renderSpinner()}
                         {renderComicCards()}
                     </div>
+
                 </main>
             </Layout>
         </Fragment>
