@@ -6,7 +6,7 @@ const baseUrl = 'comics'
  * @param {Object} params
  * @returns {Promise}
  */
-export const getComics = (params) => httpClient.get(baseUrl, { params })
+export const getComics = (params = {}) => httpClient.get(baseUrl, { params })
 
 /**
  * Retrieve a comic resource by id

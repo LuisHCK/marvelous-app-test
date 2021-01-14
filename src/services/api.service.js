@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const API_KEY = process.env.MARVEL_APIKEY
-const SERVER_URL = process.env.SERVER_URL
+const API_KEY = process.env.GATSBY_APIKEY
+const SERVER_URL = process.env.GATSBY_SERVER_URL
 
 // Use Axios interceptor to inject apikey param
 const httpClient = axios.create({
