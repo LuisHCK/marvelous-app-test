@@ -6,7 +6,7 @@ import ImagePlaceHolder from './image-placeholder'
 import '../../../assets/scss/components/comic-card/comic-card.scss'
 
 export default function ComicCard(props) {
-    const { id, thumbnail, title, creators } = props
+    const { id, thumbnail, title, creators, format, issueNumber } = props
 
     const comicURL = buildPath('/comic', id)
 
@@ -14,9 +14,18 @@ export default function ComicCard(props) {
         creators
             ?.filter((creator) => creator.role === 'writer')
             ?.map((creator) => creator.name)
+            ?.slice(0, 2)
+            ?.join(', ')
+
+    const renderFormat = () =>
+        format ? <span className="ComicCard-format">{format}</span> : null
+
+    const renderIssueNumber = () => (issueNumber ? `#${issueNumber}` : null)
 
     return (
         <div className="ComicCard">
+            {renderFormat()}
+
             <a href={comicURL} className="ComicCard-coverContainer">
                 <LazyLoad
                     placeholder={<ImagePlaceHolder />}
@@ -37,15 +46,24 @@ export default function ComicCard(props) {
                 <a className="ComicCard-title" href={comicURL}>
                     <h5>{title}</h5>
                 </a>
-                <span className="ComicCard-creators">{renderCreators()}</span>
+
+                <div className="ComicCard-footer">
+                    <span className="ComicCard-creators">
+                        {renderCreators()}
+                    </span>
+
+                    <span className="ComicCard-issueNumber">{renderIssueNumber()}</span>
+                </div>
             </div>
         </div>
     )
 }
 
 ComicCard.propTypes = {
+    issueNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    thumbnail: PropTypes.string,
     title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string,
     creators: PropTypes.array,
+    format: PropTypes.string,
 }

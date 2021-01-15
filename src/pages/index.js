@@ -6,10 +6,10 @@ import ComicCard from '../components/comics/comic-card'
 import Layout from '../components/layout'
 import Seo from '../components/seo'
 import Spinner from '../components/spinner'
-import '../assets/scss/pages/home/home.scss'
 import PageCover from '../components/page-cover'
 import CharacterCard from '../components/characters/characters-card'
 import StoryCard from '../components/stories/story-card'
+import '../assets/scss/pages/home/home.scss'
 
 export default function IndexPage() {
     const [loadingState, setLoadingState] = useState({
@@ -132,7 +132,7 @@ export default function IndexPage() {
                     <section>
                         <h2>Featured Comics</h2>
 
-                        <div className="HomePage-contentRow">
+                        <div className="ContentRow">
                             {loadingState.featuredComics ? <Spinner /> : null}
                             {renderComicCards()}
                         </div>
@@ -141,7 +141,7 @@ export default function IndexPage() {
                     <section>
                         <h2>Popular characters</h2>
 
-                        <div className="HomePage-contentRow">
+                        <div className="ContentRow">
                             {loadingState.popularCharacters ? (
                                 <Spinner />
                             ) : null}
@@ -153,7 +153,7 @@ export default function IndexPage() {
                     <section>
                         <h2>New stories</h2>
 
-                        <div className="HomePage-contentRow">
+                        <div className="ContentRow">
                             {loadingState.newStories ? <Spinner /> : null}
                             {renderStoryCards()}
                         </div>

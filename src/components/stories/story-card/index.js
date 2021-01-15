@@ -12,7 +12,9 @@ function StoryCard(props) {
 
     return (
         <div className="StoryCard">
-            <a href={storyURL} className="StoryCard-imageContainer" />
+            <a href={storyURL} className="StoryCard-imageContainer">
+                {name}
+            </a>
 
             <a className="StoryCard-name" href={storyURL}>
                 <h5>{name}</h5>

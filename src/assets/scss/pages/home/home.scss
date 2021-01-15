@@ -2,18 +2,4 @@
 
 .HomePage {
     color: $light;
-
-    &-contentRow {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-left: -15px;
-        margin-right: -15px;
-
-        & > :nth-child(n) {
-            width: calc(25% - 30px);
-            margin-left: 15px;
-            margin-right: 15px;
-        }
-    }
 }

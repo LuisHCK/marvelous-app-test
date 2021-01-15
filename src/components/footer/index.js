@@ -1,5 +1,4 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
 import SocialLink from './social-link'
 import '../../assets/scss/components/footer/footer.scss'
 
@@ -40,13 +39,6 @@ export default function Footer() {
 
                 <div className="Footer-legalText">©2021 MARVEL</div>
             </div>
-
-            <Helmet>
-                <script
-                    src="https://kit.fontawesome.com/87131fda1b.js"
-                    crossorigin="anonymous"
-                ></script>
-            </Helmet>
         </footer>
     )
 }

@@ -1,0 +1,13 @@
+@import '../../base/variables';
+
+.ComicsPage {
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between
+    }
+
+    &-controls {
+        display: flex;
+    }
+}

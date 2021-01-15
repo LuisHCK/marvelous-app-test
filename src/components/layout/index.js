@@ -4,6 +4,7 @@ import NavBar from '../navbar'
 // Base styles
 import '../../assets/scss/base/base.scss'
 import Footer from '../footer'
+import { Helmet } from 'react-helmet'
 
 export default function Layout({ children, useNavBar, useFooter }) {
     const renderNavBar = () => (useNavBar ? <NavBar /> : null)
@@ -15,6 +16,13 @@ export default function Layout({ children, useNavBar, useFooter }) {
             {renderNavBar()}
             {children}
             {renderFooter()}
+
+            <Helmet>
+                <script
+                    src="https://kit.fontawesome.com/87131fda1b.js"
+                    crossorigin="anonymous"
+                ></script>
+            </Helmet>
         </Fragment>
     )
 }

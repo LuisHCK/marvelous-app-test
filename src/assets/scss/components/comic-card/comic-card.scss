@@ -5,6 +5,9 @@
     flex-direction: column;
     color: $light;
     text-decoration: none;
+    margin-bottom: 32px;
+    position: relative;
+    align-items: center;
 
     a {
         text-decoration: none;
@@ -16,6 +19,7 @@
         height: 100%;
         transition: 0.3s;
         overflow: hidden;
+        min-height: 414px;
     }
 
     &-cover {
@@ -26,7 +30,7 @@
         transition: 0.5s;
 
         &:hover {
-            transform: scale(1.03)
+            transform: scale(1.03);
         }
     }
 
@@ -39,17 +43,42 @@
     &-titleContainer {
         height: 64px;
         padding-top: 0.75em;
+        width: 100%;
     }
 
     &-title {
+        text-align: left;
         h5 {
             margin: 0px;
             font-size: 14px;
         }
     }
 
-    &-creators {
+    &-creators, &-issueNumber {
         font-size: 12px;
         color: $text-muted;
+    }
+
+    &-format {
+        position: absolute;
+        background-color: $marvel-red;
+        border-radius: 6px;
+        padding: 3px 10px;
+        font-family: $secondary-font;
+        top: 10px;
+        z-index: 1;
+    }
+
+    &-footer {
+        padding-top: 5px;
+        display: flex;
+
+        :nth-child(n) {
+            width: 50%;
+        }
+
+        :last-child {
+            text-align: right;
+        }
     }
 }
