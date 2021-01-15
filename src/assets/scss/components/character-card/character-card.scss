@@ -1,0 +1,39 @@
+@import '../../base/variables';
+
+.CharacterCard {
+    display: flex;
+    flex-direction: column;
+    color: $light;
+    margin-bottom: 32px;
+
+    &-imageContainer,
+    &-wrapper {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    &-image {
+        width: 100%;
+        height: 100%;
+        transition: 0.5s;
+        object-fit: cover;
+        object-position: center;
+        height: 263px;
+
+        &:hover {
+            transform: scale(1.03);
+        }
+    }
+
+    &-name {
+        text-decoration: none;
+        color: $light;
+        text-align: center;
+        padding-top: 12px;
+
+        h5 {
+            margin: 0px;
+            font-size: 14px;
+        }
+    }
+}

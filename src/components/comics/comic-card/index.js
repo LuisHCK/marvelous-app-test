@@ -6,9 +6,14 @@ import ImagePlaceHolder from './image-placeholder'
 import '../../../assets/scss/components/comic-card/comic-card.scss'
 
 export default function ComicCard(props) {
-    const { id, cover, title } = props
+    const { id, thumbnail, title, creators } = props
 
     const comicURL = buildPath('/comic', id)
+
+    const renderCreators = () =>
+        creators
+            ?.filter((creator) => creator.role === 'writer')
+            ?.map((creator) => creator.name)
 
     return (
         <div className="ComicCard">
@@ -21,23 +26,26 @@ export default function ComicCard(props) {
                 >
                     <img
                         className="ComicCard-cover"
-                        src={cover}
+                        src={thumbnail}
                         alt={title}
                         title={title}
                     />
                 </LazyLoad>
             </a>
 
-            <a href={comicURL}>
-                <h5 className="ComicCard-title">{title}</h5>
-            </a>
+            <div className="ComicCard-titleContainer">
+                <a className="ComicCard-title" href={comicURL}>
+                    <h5>{title}</h5>
+                </a>
+                <span className="ComicCard-creators">{renderCreators()}</span>
+            </div>
         </div>
     )
 }
 
 ComicCard.propTypes = {
-    id: PropTypes.oneOf([PropTypes.number, PropTypes.string]),
-    cover: PropTypes.string,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    thumbnail: PropTypes.string,
     title: PropTypes.string.isRequired,
-    creators: PropTypes.arrayOf(PropTypes.string),
+    creators: PropTypes.array,
 }

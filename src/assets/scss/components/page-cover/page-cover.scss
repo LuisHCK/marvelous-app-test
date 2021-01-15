@@ -1,0 +1,19 @@
+@import "../../../scss/base/variables";
+
+.PageCover {
+    height: 650px;
+    background-color: $accent;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    color: $light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+        font-family: $secondary-font;
+        text-transform: uppercase;
+        font-size: 3em;
+    }
+}

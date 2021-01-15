@@ -1,0 +1,14 @@
+@import "../../base/variables";
+
+// Reset button
+button {
+    background-color: none;
+    border: none;
+    font-size: 14px;
+    color: $dark;
+    font-family: $primary-font;
+}
+
+.Button {
+    height: 32px;
+}

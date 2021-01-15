@@ -1,0 +1,39 @@
+@import '../../base/variables';
+
+.StoryCard {
+    display: flex;
+    flex-direction: column;
+    color: $light;
+    margin-bottom: 32px;
+    overflow: hidden;
+
+    &-imageContainer {
+        width: 100%;
+        transition: 0.5s ease-in-out;
+        height: 263px;
+        background-image: url('../../../img/marvel-default-cover.jpg');
+        background-size: cover;
+        background-position: center;
+
+        &:hover {
+            transform: scale(1.03);
+        }
+    }
+
+    &-name {
+        text-decoration: none;
+        color: $light;
+        text-align: left;
+        padding-top: 12px;
+
+        h5 {
+            margin: 0px;
+            font-size: 14px;
+        }
+    }
+
+    &-comicNames {
+        font-size: 12px;
+        color: $text-muted;
+    }
+}
