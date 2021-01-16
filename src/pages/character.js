@@ -26,7 +26,7 @@ function Character(props) {
 
     return (
         <Fragment>
-            <Seo title="Character name" />
+            <Seo title={character?.name} description={character?.description} />
 
             <Layout useNavBar useFooter>
                 <main className="CharacterPage">
