@@ -77,7 +77,7 @@ export default function Comics() {
                             <h2>Comics List</h2>
 
                             <div className="ComicsPage-search">
-                                <Search onInput={handleSearch} />
+                                <Search onInput={handleSearch} useSelect />
                             </div>
 
                             <div className="ComicsPage-controls">

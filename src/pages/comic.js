@@ -35,7 +35,10 @@ export default function Comic(props) {
 
     return (
         <Fragment>
-            <Seo title={'Comic : ' + comicId} />
+            <Seo
+                title={comic?.title}
+                description={comic?.description?.slice(0, 90)}
+            />
 
             <Layout useNavBar useFooter>
                 <main className="ComicPage">

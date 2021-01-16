@@ -5,8 +5,9 @@ import '../../assets/scss/components/controls/controls.scss'
 let timer
 
 export default function Search(props) {
-    const [field, setField] = useState('titleStartsWith')
-    const { onInput } = props
+    const { onInput, useSelect } = props
+
+    const [field, setField] = useState(props.defaultField)
 
     const handleInput = ({ target }) => {
         clearTimeout(timer)
@@ -26,17 +27,18 @@ export default function Search(props) {
         setField(target.value)
     }
 
+    const renderSelect = () =>
+        useSelect ? (
+            <select defaultValue="title" name="field" onChange={handleSelect}>
+                <option value="titleStartsWith">Title</option>
+                <option value="issueNumber">Issue number</option>
+            </select>
+        ) : null
+
     return (
         <div className="Controls">
             <div className="Controls-search">
-                <select
-                    defaultValue="title"
-                    name="field"
-                    onChange={handleSelect}
-                >
-                    <option value="titleStartsWith">Title</option>
-                    <option value="issueNumber">Issue number</option>
-                </select>
+                {renderSelect()}
 
                 <input
                     type="search"
@@ -51,4 +53,9 @@ export default function Search(props) {
 
 Search.propTypes = {
     onInput: PropTypes.func.isRequired,
+    useSelect: PropTypes.bool,
+}
+
+Search.defaultProps = {
+    defaultField: 'titleStartsWith',
 }
