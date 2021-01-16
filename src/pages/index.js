@@ -10,6 +10,7 @@ import PageCover from '../components/page-cover'
 import CharacterCard from '../components/characters/characters-card'
 import StoryCard from '../components/stories/story-card'
 import '../assets/scss/pages/home/home.scss'
+import { getThumbnailURL } from '../utils/thumbnails'
 
 export default function IndexPage() {
     const [loadingState, setLoadingState] = useState({
@@ -87,7 +88,7 @@ export default function IndexPage() {
                 key={'featured-comic-' + index}
                 id={comic.id}
                 title={comic.title}
-                thumbnail={`${comic.thumbnail?.path}.${comic?.thumbnail?.extension}`}
+                thumbnail={getThumbnailURL(comic.thumbnail)}
                 creators={comic.creators?.items}
             />
         ))
@@ -101,7 +102,7 @@ export default function IndexPage() {
                 key={'popular-character-' + index}
                 id={character.id}
                 name={character.name}
-                thumbnail={`${character.thumbnail?.path}.${character.thumbnail?.extension}`}
+                thumbnail={getThumbnailURL(character.thumbnail)}
             />
         ))
 
@@ -114,7 +115,7 @@ export default function IndexPage() {
                 key={'new-story-' + index}
                 id={story.id}
                 name={story.title}
-                thumbnail={`${story.thumbnail?.path}.${story.thumbnail?.extension}`}
+                thumbnail={getThumbnailURL(story.thumbnail)}
                 comics={story.comics?.items}
             />
         ))

@@ -4,6 +4,7 @@ import { getStoryCharacters } from '../../../services/stories.service'
 import CharacterCard from '../../characters/characters-card'
 import Spinner from '../../spinner'
 import NoContent from '../../no-content'
+import { getThumbnailURL } from '../../../utils/thumbnails'
 
 function StoryCharacters(props) {
     const { storyId } = props
@@ -35,7 +36,7 @@ function StoryCharacters(props) {
                 key={'comic-character-' + index}
                 id={character.id}
                 name={character.name}
-                thumbnail={`${character.thumbnail?.path}.${character.thumbnail?.extension}`}
+                thumbnail={getThumbnailURL(character.thumbnail)}
             />
         ))
 

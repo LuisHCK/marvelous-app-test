@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getStoryComics } from '../../../services/stories.service'
+import { getThumbnailURL } from '../../../utils/thumbnails'
 import ComicCard from '../../comics/comic-card'
 import NoContent from '../../no-content'
 import Spinner from '../../spinner'
@@ -28,7 +29,7 @@ export default function StoryComics(props) {
                 key={'story-comic-' + index}
                 id={comic.id}
                 title={comic.title}
-                thumbnail={`${comic.thumbnail?.path}.${comic?.thumbnail?.extension}`}
+                thumbnail={getThumbnailURL(comic.thumbnail)}
                 creators={comic.creators?.items}
             />
         ))

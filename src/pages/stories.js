@@ -7,6 +7,7 @@ import Seo from '../components/seo'
 import Spinner from '../components/spinner'
 import { getStories } from '../services/stories.service'
 import '../assets/scss/pages/stories/stories.scss'
+import { getThumbnailURL } from '../utils/thumbnails'
 
 const coverURL = `https://terrigen-cdn-dev.marvel.com/content/prod/1x/011blw-com_mas_dsk_02.jpg`
 
@@ -42,7 +43,7 @@ function Stories() {
                 key={'new-story-' + index}
                 id={story.id}
                 name={story.title}
-                thumbnail={`${story.thumbnail?.path}.${story.thumbnail?.extension}`}
+                thumbnail={getThumbnailURL(story.thumbnail)}
                 comics={story.comics?.items}
             />
         ))

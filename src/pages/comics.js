@@ -9,6 +9,7 @@ import Filter from '../components/filter'
 import '../assets/scss/pages/comics/comics.scss'
 import Search from '../components/search'
 import Spinner from '../components/spinner'
+import { getThumbnailURL } from '../utils/thumbnails'
 
 export default function Comics() {
     const [loadingState, setLoadingState] = useState(true)
@@ -53,7 +54,7 @@ export default function Comics() {
                 key={'comic-card-' + index}
                 id={comic.id}
                 title={comic.title}
-                thumbnail={`${comic.thumbnail?.path}.${comic?.thumbnail?.extension}`}
+                thumbnail={getThumbnailURL(comic.thumbnail)}
                 creators={comic.creators?.items}
                 format={comic.format}
                 issueNumber={comic.issueNumber}

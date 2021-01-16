@@ -8,6 +8,7 @@ import Seo from '../components/seo'
 import Spinner from '../components/spinner'
 import { getCharacters } from '../services/characters.service'
 import '../assets/scss/pages/character/character.scss'
+import { getThumbnailURL } from '../utils/thumbnails'
 
 const coverURL = `https://terrigen-cdn-dev.marvel.com/content/prod/1x/news_articles-mas_dsk_01.jpg`
 
@@ -48,7 +49,7 @@ function Characters() {
                 key={'popular-character-' + index}
                 id={character.id}
                 name={character.name}
-                thumbnail={`${character.thumbnail?.path}.${character.thumbnail?.extension}`}
+                thumbnail={getThumbnailURL(character.thumbnail)}
             />
         ))
 
