@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import '../../../assets/scss/components/character-cover/character-cover.scss'
 import { formatDate } from '../../../utils/date'
+import parse from 'html-react-parser'
+import '../../../assets/scss/components/character-cover/character-cover.scss'
 
 function CharacterCover(props) {
     const { character } = props
@@ -20,7 +21,9 @@ function CharacterCover(props) {
                 <div className="CharacterCover-information">
                     <h1 className="name">{character?.name}</h1>
 
-                    <p className="description">{character?.description}</p>
+                    <p className="description">
+                        {parse(character?.description || '')}
+                    </p>
 
                     <span className="subtitle">Last modification</span>
                     <h2 className="subtitle-text">

@@ -6,7 +6,7 @@ import '../../../assets/scss/components/story-card/story-card.scss'
 function StoryCard(props) {
     const { id, name, comics } = props
 
-    const storyURL = buildPath('/character', id)
+    const storyURL = buildPath('/story', `?id=${id}`)
 
     const renderComicNames = () => comics?.map((comic) => comic.name).join(', ')
 

@@ -13,10 +13,10 @@ const coverURL = `https://terrigen-cdn-dev.marvel.com/content/prod/1x/011blw-com
 function Stories() {
     const [stories, setStories] = useState([])
     const [loading, setLoading] = useState(true)
-    const [filters, setFilters] = useState({})
+    const [filters, setFilters] = useState({orderBy: '-modified'})
 
     useEffect(() => {
-        const getCharactersData = async () => {
+        const getStoriesData = async () => {
             setStories([])
             setLoading(true)
             const { data } = await getStories({ ...filters })
@@ -25,7 +25,7 @@ function Stories() {
             setLoading(false)
         }
 
-        getCharactersData()
+        getStoriesData()
     }, [filters])
 
     const handleFilters = ({ field, value }) => {
