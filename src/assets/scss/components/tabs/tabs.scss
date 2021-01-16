@@ -1,4 +1,5 @@
 @import '../../base/variables';
+@import '../../mixins/responsive';
 
 .Tabs {
     display: flex;
@@ -27,6 +28,11 @@
         text-transform: uppercase;
         color: $light;
         font-family: $secondary-font;
+
+        @include for-phone-only {
+            font-size: 1em;
+            padding: 0em 1.5em;
+        }
 
         &.active::before {
             content: ' ';

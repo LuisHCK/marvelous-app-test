@@ -1,4 +1,5 @@
 @import '../../base/variables';
+@import '../../mixins/responsive';
 
 .StoryCover {
     display: flex;
@@ -8,6 +9,12 @@
     color: $light;
     position: relative;
     overflow: hidden;
+
+    @include for-phone-only {
+        height: auto;
+
+        padding: 2em 0em;
+    }
 
     &-background {
         background-size: cover;
@@ -25,15 +32,28 @@
         z-index: 1;
         max-width: 850px;
         height: 450px;
+
+        @include for-phone-only {
+            max-width: 90%;
+            height: auto;
+        }
     }
 
     &-information {
         padding-right: 3em;
 
+        @include for-phone-only {
+            padding-right: 0em;
+        }
+
         .name {
             font-size: 2.3em;
             font-family: $secondary-font;
             margin-top: 0px;
+
+            @include for-phone-only {
+                font-size: 1.5em;
+            }
         }
 
         .description {

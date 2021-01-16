@@ -3,6 +3,7 @@
 .NoContent {
     display: flex;
     align-items: center;
+    width: 100% !important;
 
     p {
         font-family: $secondary-font;

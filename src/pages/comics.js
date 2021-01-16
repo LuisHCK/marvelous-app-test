@@ -76,11 +76,11 @@ export default function Comics() {
                         <div className="ComicsPage-header">
                             <h2>Comics List</h2>
 
-                            <div className="ComicsPage-search">
+                            <div className="ComicsPage-search search">
                                 <Search onInput={handleSearch} useSelect />
                             </div>
 
-                            <div className="ComicsPage-controls">
+                            <div className="ComicsPage-controls filters">
                                 <Filter
                                     onSelect={handleFilters}
                                     options={sortOptions}

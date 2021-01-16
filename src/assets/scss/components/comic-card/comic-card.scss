@@ -1,4 +1,5 @@
 @import '../../base/variables';
+@import '../../mixins/responsive';
 
 .ComicCard {
     display: flex;
@@ -20,6 +21,10 @@
         transition: 0.3s;
         overflow: hidden;
         min-height: 414px;
+
+        @include for-phone-only {
+            min-height: 250px;
+        }
     }
 
     &-cover {
@@ -54,7 +59,8 @@
         }
     }
 
-    &-creators, &-issueNumber {
+    &-creators,
+    &-issueNumber {
         font-size: 12px;
         color: $text-muted;
     }
@@ -72,9 +78,15 @@
     &-footer {
         padding-top: 5px;
         display: flex;
+        max-height: 29px;
+        overflow: hidden;
 
         :nth-child(n) {
-            width: 50%;
+            width: 80%;
+        }
+
+        :last-child {
+            width: 20%;
         }
 
         :last-child {

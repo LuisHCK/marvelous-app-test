@@ -1,10 +1,25 @@
 @import '../../base/variables';
+@import '../../mixins/responsive';
 
 .ComicsPage {
     &-header {
         display: flex;
         align-items: center;
-        justify-content: space-between
+        justify-content: space-between;
+
+        @include for-phone-only {
+            flex-wrap: wrap;
+            text-align: center;
+            justify-content: center;
+
+            .search {
+                margin-bottom: 20px;
+            }
+
+            .filters {
+                margin-bottom: 20px;
+            }
+        }
     }
 
     &-controls {

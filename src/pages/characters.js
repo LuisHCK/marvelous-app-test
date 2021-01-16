@@ -7,6 +7,7 @@ import Search from '../components/search'
 import Seo from '../components/seo'
 import Spinner from '../components/spinner'
 import { getCharacters } from '../services/characters.service'
+import '../assets/scss/pages/character/character.scss'
 
 const coverURL = `https://terrigen-cdn-dev.marvel.com/content/prod/1x/news_articles-mas_dsk_01.jpg`
 
@@ -63,17 +64,17 @@ function Characters() {
 
                 <main className="Page">
                     <section>
-                        <div className="ComicsPage-header">
+                        <div className="CharacterPage-header">
                             <h2>Characters List</h2>
 
-                            <div className="ComicsPage-search">
+                            <div className="CharacterPage-search search">
                                 <Search
                                     onInput={handleSearch}
                                     defaultField="nameStartsWith"
                                 />
                             </div>
 
-                            <div className="ComicsPage-controls">
+                            <div className="CharacterPage-controls filters">
                                 <Filter
                                     onSelect={handleFilters}
                                     options={sortOptions}

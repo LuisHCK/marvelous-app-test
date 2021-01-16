@@ -1,4 +1,5 @@
 @import '../../../scss/base/variables';
+@import '../../mixins/responsive';
 
 .Footer {
     display: flex;
@@ -8,6 +9,11 @@
     color: $light;
     height: 90px;
 
+    @include for-phone-only {
+        height: auto;
+        padding: 1.5em 0em;
+    }
+
     &-content {
         display: flex;
         align-items: center;
@@ -15,6 +21,10 @@
         width: 100%;
         max-width: 1400px;
         height: 100%;
+
+        @include for-phone-only {
+            flex-direction: column;
+        }
     }
 
     &-logo {
