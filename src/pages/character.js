@@ -22,7 +22,7 @@ function Character(props) {
         }
 
         getCharacterData()
-    }, [])
+    }, [characterId])
 
     return (
         <Fragment>

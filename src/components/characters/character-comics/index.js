@@ -42,11 +42,14 @@ export default function CharacterComics(props) {
     return (
         <div className="ContentRow">
             {renderComicsCards()}
-            
+
             {renderSpinner()}
 
             {renderNoContent()}
-
         </div>
     )
+}
+
+CharacterComics.propTypes = {
+    characterId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 }
