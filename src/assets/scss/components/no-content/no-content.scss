@@ -1,0 +1,16 @@
+@import '../../base/variables';
+
+.NoContent {
+    display: flex;
+    align-items: center;
+
+    p {
+        font-family: $secondary-font;
+        font-size: 1.5em;
+        margin-right: 0.5em;
+    }
+
+    i {
+        font-size: 1.5em;
+    }
+}

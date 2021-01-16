@@ -1,0 +1,26 @@
+@import '../../base/variables';
+
+.NotFoundPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $dark;
+    background-color: $light;
+
+    &-image {
+        background-image: url('../../../img/iron-man-char.jpg');
+        height: 640px;
+        width: 600px;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    &-info {
+        width: 25%;
+        font-family: $secondary-font;
+
+        p {
+            max-width: 400px;
+        }
+    }
+}

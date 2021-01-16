@@ -1,6 +1,7 @@
 @import './variables';
 
-.Page {
+.Page,
+.Container {
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
@@ -29,5 +30,17 @@
         width: calc(25% - 30px);
         margin-left: 15px;
         margin-right: 15px;
+    }
+}
+
+.ImageContainer {
+    width: 100%;
+    height: 100%;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: left;
     }
 }

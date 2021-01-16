@@ -48,7 +48,7 @@ export const getComicStories = (id, params = {}) =>
  * Retrieve a comic's events
  * @param {Number|String} id Comic id
  * @param {Object} params Request params
- * @returns {Promise}
+ * @returns {Promise} Promise
  */
 export const getComicEvents = (id, params = {}) =>
     httpClient.get(buildPath(baseUrl, id, 'events'), { params })

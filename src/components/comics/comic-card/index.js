@@ -8,7 +8,7 @@ import '../../../assets/scss/components/comic-card/comic-card.scss'
 export default function ComicCard(props) {
     const { id, thumbnail, title, creators, format, issueNumber } = props
 
-    const comicURL = buildPath('/comic', id)
+    const comicURL = buildPath('/comic', `?id=${id}`)
 
     const renderCreators = () =>
         creators
@@ -52,7 +52,9 @@ export default function ComicCard(props) {
                         {renderCreators()}
                     </span>
 
-                    <span className="ComicCard-issueNumber">{renderIssueNumber()}</span>
+                    <span className="ComicCard-issueNumber">
+                        {renderIssueNumber()}
+                    </span>
                 </div>
             </div>
         </div>
