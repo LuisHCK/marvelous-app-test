@@ -17,6 +17,8 @@ function Filter(props) {
 
     return (
         <div className="Controls">
+            {/* jsx-a11y/no-onchange is deprecated but eslint still marking as warning */}
+            {/* eslint-disable-next-line jsx-a11y/no-onchange */}
             <select
                 defaultValue="label"
                 name="Sort"

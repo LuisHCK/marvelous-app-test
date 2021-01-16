@@ -18,20 +18,15 @@ export default function Comic(props) {
     const comicId = queryParams.get('id')
 
     useEffect(() => {
+        const getComicData = async () => {
+            setLoadingState(true)
+            const { data } = await getComicById(comicId)
+            setComic(data?.data.results ? data?.data.results[0] : {})
+            setLoadingState(false)
+        }
+
         getComicData()
-
-        return () => {}
     }, [])
-
-    const getComicData = async () => {
-        setLoadingState(true)
-
-        const { data } = await getComicById(comicId)
-
-        setComic(data?.data.results ? data?.data.results[0] : {})
-
-        setLoadingState(false)
-    }
 
     return (
         <Fragment>
@@ -55,7 +50,10 @@ export default function Comic(props) {
                             </TabPane>
 
                             <TabPane label="Images">
-                                <ComicImages images={comic?.images} />
+                                <ComicImages
+                                    images={comic?.images}
+                                    description={comic?.title}
+                                />
                             </TabPane>
                         </Tabs>
                     </section>

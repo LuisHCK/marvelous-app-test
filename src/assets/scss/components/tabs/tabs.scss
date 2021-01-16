@@ -25,6 +25,8 @@
         align-items: center;
         position: relative;
         text-transform: uppercase;
+        color: $light;
+        font-family: $secondary-font;
 
         &.active::before {
             content: ' ';

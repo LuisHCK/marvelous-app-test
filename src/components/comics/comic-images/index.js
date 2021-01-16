@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import NoContent from '../../no-content'
 
 function ComicImages(props) {
-    const { images } = props
+    const { images, description } = props
 
     const renderImages = () =>
         images.map((image, index) => (
             <div key={'comic-image-' + index} className="ImageContainer">
                 <img
                     src={`${image.path}.${image.extension}`}
-                    alt="Comic image"
+                    alt={description}
                 />
             </div>
         ))
@@ -28,6 +28,7 @@ function ComicImages(props) {
 
 ComicImages.propTypes = {
     images: PropTypes.array,
+    description: PropTypes.string
 }
 
 export default ComicImages

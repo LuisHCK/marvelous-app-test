@@ -11,17 +11,16 @@ function ComicCharacters(props) {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+        const getData = async () => {
+            setLoading(true)
+            const { data } = await getComicCharacters(comicId)
+
+            setCharacter(data?.data.results)
+            setLoading(false)
+        }
+
         getData()
-        return () => {}
     }, [comicId])
-
-    const getData = async () => {
-        setLoading(true)
-        const { data } = await getComicCharacters(comicId)
-
-        setCharacter(data?.data.results)
-        setLoading(false)
-    }
 
     const renderSpinner = () => (loading ? <Spinner /> : null)
 

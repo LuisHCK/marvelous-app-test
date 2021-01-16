@@ -11,17 +11,16 @@ function ComicStories(props) {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
+        const getData = async () => {
+            setLoading(true)
+            const { data } = await getComicStories(comicId)
+
+            setStories(data?.data.results)
+            setLoading(false)
+        }
+
         getData()
-        return () => {}
     }, [comicId])
-
-    const getData = async () => {
-        setLoading(true)
-        const { data } = await getComicStories(comicId)
-
-        setStories(data?.data.results)
-        setLoading(false)
-    }
 
     const renderStoryCards = () =>
         stories.map((story, index) => (

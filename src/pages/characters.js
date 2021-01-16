@@ -17,18 +17,17 @@ function Characters() {
     const [search, setSearch] = useState({})
 
     useEffect(() => {
+        const getCharactersData = async () => {
+            setCharacters([])
+            setLoading(true)
+            const { data } = await getCharacters({ ...filters, ...search })
+
+            setCharacters(data?.data?.results)
+            setLoading(false)
+        }
+
         getCharactersData()
-        return () => {}
     }, [filters, search])
-
-    const getCharactersData = async () => {
-        setCharacters([])
-        setLoading(true)
-        const { data } = await getCharacters({ ...filters, ...search })
-
-        setCharacters(data?.data?.results)
-        setLoading(false)
-    }
 
     const handleFilters = ({ field, value }) => {
         if (value && value !== 'all') {

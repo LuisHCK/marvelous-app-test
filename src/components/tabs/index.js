@@ -8,22 +8,21 @@ const Tabs = (props) => {
     const [headers, setHeaders] = useState([])
 
     useEffect(() => {
+        const getHeaders = () => {
+            const newHeaders = React.Children.map(
+                children,
+                (element) => element.props?.label
+            )
+
+            setHeaders(newHeaders)
+        }
+
         getHeaders()
-        return () => {}
     }, [children])
-
-    const getHeaders = () => {
-        const newHeaders = React.Children.map(
-            children,
-            (element) => element.props?.label
-        )
-
-        setHeaders(newHeaders)
-    }
 
     const renderHeaders = () =>
         headers.map((header, index) => (
-            <div
+            <button
                 key={'tab-header-' + index}
                 className={`Tabs-header ${
                     currentTab === index ? 'active' : ''
@@ -31,7 +30,7 @@ const Tabs = (props) => {
                 onClick={() => setCurrentTab(index)}
             >
                 {header}
-            </div>
+            </button>
         ))
 
     const renderCurrentTab = () => children[currentTab]
