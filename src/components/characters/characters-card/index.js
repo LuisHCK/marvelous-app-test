@@ -7,7 +7,7 @@ import '../../../assets/scss/components/character-card/character-card.scss'
 function CharacterCard(props) {
     const { id, thumbnail, name } = props
 
-    const characterURL = buildPath('/character', id)
+    const characterURL = buildPath('/character', `?id=${id}`)
 
     return (
         <div className="CharacterCard">

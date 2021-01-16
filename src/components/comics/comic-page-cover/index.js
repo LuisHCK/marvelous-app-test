@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { formatDate } from '../../../utils/date'
 import '../../../assets/scss/components/comic-page-cover/comic-page-cover.scss'
 
 function ComicPageCover(props) {
@@ -90,16 +91,3 @@ ComicPageCover.defaultProps = {
 
 export default ComicPageCover
 
-const formatDate = (dateString) => {
-    const parsedDate = new Date(dateString)
-
-    const options = {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-    }
-
-    return isNaN(parsedDate.getTime())
-        ? null
-        : parsedDate.toLocaleDateString('en-US', options)
-}
