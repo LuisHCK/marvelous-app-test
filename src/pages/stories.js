@@ -8,47 +8,82 @@ import Spinner from '../components/spinner'
 import { getStories } from '../services/stories.service'
 import '../assets/scss/pages/stories/stories.scss'
 import { getThumbnailURL } from '../utils/thumbnails'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import NoContent from '../components/no-content'
 
 const coverURL = `https://terrigen-cdn-dev.marvel.com/content/prod/1x/011blw-com_mas_dsk_02.jpg`
+
+let loadNextTimeout
 
 function Stories() {
     const [stories, setStories] = useState([])
     const [loading, setLoading] = useState(true)
-    const [filters, setFilters] = useState({orderBy: '-modified'})
+    const [filters, setFilters] = useState({ orderBy: '-modified' })
+    const [offset, setOffset] = useState(0)
+    const [hasMore, setHasMore] = useState(false)
 
     useEffect(() => {
         const getStoriesData = async () => {
-            setStories([])
             setLoading(true)
-            const { data } = await getStories({ ...filters })
+            setHasMore(true)
 
-            setStories(data?.data?.results)
+            try {
+                const { data } = await getStories({ ...filters, offset })
+                setStories((prev) => [...prev, ...data?.data?.results])
+            } catch (error) {
+                setLoading(false)
+                setHasMore(false)
+
+                console.error(error)
+            }
+
             setLoading(false)
         }
 
         getStoriesData()
-    }, [filters])
+    }, [filters, offset])
 
     const handleFilters = ({ field, value }) => {
         if (value && value !== 'all') {
+            setStories([])
+            setOffset(0)
             setFilters({ [field]: value })
         } else {
             setFilters({})
         }
     }
 
-    const renderStoriesCards = () =>
-        stories.map((story, index) => (
-            <StoryCard
-                key={'new-story-' + index}
-                id={story.id}
-                name={story.title}
-                thumbnail={getThumbnailURL(story.thumbnail)}
-                comics={story.comics?.items}
-            />
-        ))
+    const handleNext = () => {
+        setHasMore(false)
 
-    const renderSpinner = () => (loading ? <Spinner /> : null)
+        loadNextTimeout = setTimeout(() => {
+            setOffset((prev) => prev + 20)
+        }, 500)
+    }
+
+    const renderStoriesCards = () => (
+        <InfiniteScroll
+            dataLength={stories.length}
+            next={handleNext}
+            hasMore={hasMore}
+            loader={<Spinner />}
+        >
+            <section className="ContentRow">
+                {stories.map((story, index) => (
+                    <StoryCard
+                        key={'new-story-' + index}
+                        id={story.id}
+                        name={story.title}
+                        thumbnail={getThumbnailURL(story.thumbnail)}
+                        comics={story.comics?.items}
+                    />
+                ))}
+            </section>
+        </InfiniteScroll>
+    )
+
+    const renderNoContent = () =>
+        !loading && !stories.length ? <NoContent /> : null
 
     return (
         <Fragment>
@@ -74,11 +109,8 @@ function Stories() {
                         </div>
                     </section>
 
-                    <section className="ContentRow">
-                        {renderSpinner()}
-
-                        {renderStoriesCards()}
-                    </section>
+                    <div className="Centered">{renderNoContent()}</div>
+                    {renderStoriesCards()}
                 </main>
             </Layout>
         </Fragment>

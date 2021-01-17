@@ -3,14 +3,13 @@ import PropTypes from 'prop-types'
 import { formatDate } from '../../../utils/date'
 import parse from 'html-react-parser'
 import '../../../assets/scss/components/character-cover/character-cover.scss'
+import { getThumbnailURL } from '../../../utils/thumbnails'
 
 function CharacterCover(props) {
     const { character } = props
 
-    const thumbnail = `${character.thumbnail?.path}.${character?.thumbnail?.extension}`
-
     const coverStyles = {
-        backgroundImage: `url('${thumbnail}')`,
+        backgroundImage: `url('${getThumbnailURL(character.thumbnail)}')`,
     }
 
     return (
@@ -32,7 +31,7 @@ function CharacterCover(props) {
                 </div>
 
                 <div className="CharacterCover-thumbnail ImageContainer">
-                    <img src={thumbnail} alt={character?.name} />
+                    <img src={getThumbnailURL(character.thumbnail)} alt={character?.name} />
                 </div>
             </div>
         </section>

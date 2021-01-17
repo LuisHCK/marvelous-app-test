@@ -57,3 +57,14 @@
         object-position: left;
     }
 }
+
+
+.Centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.infinite-scroll-component {
+    overflow: hidden !important;
+}

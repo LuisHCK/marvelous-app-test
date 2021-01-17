@@ -9,29 +9,50 @@ import Spinner from '../components/spinner'
 import { getCharacters } from '../services/characters.service'
 import '../assets/scss/pages/character/character.scss'
 import { getThumbnailURL } from '../utils/thumbnails'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import NoContent from '../components/no-content'
 
 const coverURL = `https://terrigen-cdn-dev.marvel.com/content/prod/1x/news_articles-mas_dsk_01.jpg`
+
+let loadNextTimeout
 
 function Characters() {
     const [characters, setCharacters] = useState([])
     const [loading, setLoading] = useState(true)
     const [filters, setFilters] = useState({})
     const [search, setSearch] = useState({})
+    const [offset, setOffset] = useState(0)
+    const [hasMore, setHasMore] = useState(false)
 
     useEffect(() => {
         const getCharactersData = async () => {
-            setCharacters([])
             setLoading(true)
-            const { data } = await getCharacters({ ...filters, ...search })
+            setHasMore(true)
 
-            setCharacters(data?.data?.results)
+            try {
+                const { data } = await getCharacters({
+                    ...filters,
+                    ...search,
+                    offset,
+                })
+
+                setCharacters((prev) => [...prev, ...data?.data?.results])
+            } catch (error) {
+                setHasMore(false)
+                setLoading(false)
+                console.error(error)
+            }
+
             setLoading(false)
         }
 
         getCharactersData()
-    }, [filters, search])
+    }, [filters, search, offset])
 
     const handleFilters = ({ field, value }) => {
+        setOffset(0)
+        setCharacters([])
+
         if (value && value !== 'all') {
             setFilters({ [field]: value })
         } else {
@@ -40,20 +61,41 @@ function Characters() {
     }
 
     const handleSearch = (value) => {
+        setOffset(0)
+        setCharacters([])
         setSearch(value)
     }
 
-    const renderCharacterCards = () =>
-        characters.map((character, index) => (
-            <CharacterCard
-                key={'popular-character-' + index}
-                id={character.id}
-                name={character.name}
-                thumbnail={getThumbnailURL(character.thumbnail)}
-            />
-        ))
+    const handleNext = () => {
+        setHasMore(false)
 
-    const renderSpinner = () => (loading ? <Spinner /> : null)
+        loadNextTimeout = setTimeout(() => {
+            setOffset((prev) => prev + 20)
+        }, 500)
+    }
+
+    const renderCharacterCards = () => (
+        <InfiniteScroll
+            dataLength={characters.length}
+            next={handleNext}
+            hasMore={hasMore}
+            loader={<Spinner />}
+        >
+            <section className="ContentRow">
+                {characters.map((character, index) => (
+                    <CharacterCard
+                        key={'popular-character-' + index}
+                        id={character.id}
+                        name={character.name}
+                        thumbnail={getThumbnailURL(character.thumbnail)}
+                    />
+                ))}
+            </section>
+        </InfiniteScroll>
+    )
+
+    const renderNoContent = () =>
+        !loading && !characters.length ? <NoContent /> : null
 
     return (
         <Fragment>
@@ -85,12 +127,8 @@ function Characters() {
                             </div>
                         </div>
                     </section>
-
-                    <section className="ContentRow">
-                        {renderSpinner()}
-
-                        {renderCharacterCards()}
-                    </section>
+                    <div className="Centered">{renderNoContent()}</div>
+                    {renderCharacterCards()}
                 </main>
             </Layout>
         </Fragment>

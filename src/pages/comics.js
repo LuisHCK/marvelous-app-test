@@ -10,13 +10,18 @@ import '../assets/scss/pages/comics/comics.scss'
 import Search from '../components/search'
 import Spinner from '../components/spinner'
 import { getThumbnailURL } from '../utils/thumbnails'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import NoContent from '../components/no-content'
+
+let loadNextTimeout
 
 export default function Comics() {
     const [loadingState, setLoadingState] = useState(true)
     const [comics, setComics] = useState([])
     const [filters, setFilters] = useState({})
     const [search, setSearch] = useState({})
-    const [offset, setOffset] = useState(20)
+    const [offset, setOffset] = useState(0)
+    const [hasMore, setHasMore] = useState(false)
 
     useEffect(() => {
         getComicsList()
@@ -27,17 +32,26 @@ export default function Comics() {
      * Get comics list from API
      */
     const getComicsList = async () => {
-        setComics([])
         setLoadingState(true)
+        setHasMore(true)
 
-        const { data } = await getComics({ ...filters, ...search })
+        try {
+            const { data } = await getComics({ ...filters, ...search, offset })
+            setComics((prev) => [...prev, ...data?.data.results])
+        } catch (error) {
+            setLoadingState(false)
+            setHasMore(false)
+            console.error(error)
+        }
 
-        setComics(data?.data.results)
         setLoadingState(false)
     }
 
     const handleFilters = ({ field, value }) => {
         if (value && value !== 'all') {
+            setOffset(0)
+            setComics([])
+
             setFilters({ [field]: value })
         } else {
             setFilters({})
@@ -45,23 +59,45 @@ export default function Comics() {
     }
 
     const handleSearch = (value) => {
+        setOffset(0)
+        setComics([])
+
         setSearch(value)
     }
 
-    const renderComicCards = () =>
-        comics?.map((comic, index) => (
-            <ComicCard
-                key={'comic-card-' + index}
-                id={comic.id}
-                title={comic.title}
-                thumbnail={getThumbnailURL(comic.thumbnail)}
-                creators={comic.creators?.items}
-                format={comic.format}
-                issueNumber={comic.issueNumber}
-            />
-        ))
+    const handleNext = () => {
+        setHasMore(false)
 
-    const renderSpinner = () => (loadingState ? <Spinner /> : null)
+        loadNextTimeout = setTimeout(() => {
+            setOffset((prev) => prev + 20)
+        }, 500)
+    }
+
+    const renderComicCards = () => (
+        <InfiniteScroll
+            dataLength={comics.length}
+            next={handleNext}
+            hasMore={hasMore}
+            loader={<Spinner />}
+        >
+            <section className="ContentRow">
+                {comics?.map((comic, index) => (
+                    <ComicCard
+                        key={'comic-card-' + index}
+                        id={comic.id}
+                        title={comic.title}
+                        thumbnail={getThumbnailURL(comic.thumbnail)}
+                        creators={comic.creators?.items}
+                        format={comic.format}
+                        issueNumber={comic.issueNumber}
+                    />
+                ))}
+            </section>
+        </InfiniteScroll>
+    )
+
+    const renderNoContent = () =>
+        !comics.length && !loadingState ? <NoContent /> : null
 
     return (
         <Fragment>
@@ -98,10 +134,9 @@ export default function Comics() {
                             </div>
                         </div>
 
-                        <div className="ContentRow">
-                            {renderComicCards()}
-                            {renderSpinner()}
-                        </div>
+                        <div className="Centered">{renderNoContent()}</div>
+
+                        {renderComicCards()}
                     </section>
                 </main>
             </Layout>

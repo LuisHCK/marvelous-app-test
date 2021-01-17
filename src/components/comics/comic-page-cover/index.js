@@ -2,14 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { formatDate } from '../../../utils/date'
 import '../../../assets/scss/components/comic-page-cover/comic-page-cover.scss'
+import { getThumbnailURL } from '../../../utils/thumbnails'
 
 function ComicPageCover(props) {
     const { comic } = props
 
-    const thumbnail = `${comic.thumbnail?.path}.${comic?.thumbnail?.extension}`
-
     const backgroundStyle = {
-        backgroundImage: `url('${thumbnail}')`,
+        backgroundImage: `url('${getThumbnailURL(comic.thumbnail)}')`,
     }
 
     const getSaleDate = () => {
@@ -55,7 +54,10 @@ function ComicPageCover(props) {
         <section className="ComicPageCover">
             <div className="ComicPageCover-content">
                 <div className="ComicPageCover-thumbnail">
-                    <img src={thumbnail} alt={comic?.title} />
+                    <img
+                        src={getThumbnailURL(comic.thumbnail)}
+                        alt={comic?.title}
+                    />
                 </div>
 
                 <div className="ComicPageCover-data">
@@ -90,4 +92,3 @@ ComicPageCover.defaultProps = {
 }
 
 export default ComicPageCover
-

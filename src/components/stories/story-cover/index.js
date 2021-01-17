@@ -7,8 +7,6 @@ import '../../../assets/scss/components/story-cover/story-cover.scss'
 function StoryCover(props) {
     const { story } = props
 
-    const thumbnail = `${story.thumbnail?.path}.${story?.thumbnail?.extension}`
-
     const coverStyles = {
         backgroundImage: `url('https://terrigen-cdn-dev.marvel.com/content/prod/1x/wayofx2021001002_col_copy.jpg')`,
     }
@@ -62,9 +60,7 @@ function StoryCover(props) {
                         {formatDate(story?.modified) || 'No date provided'}
                     </h2>
 
-                    <div className="StoryCover-roles">
-                        {renderRoles()}
-                    </div>
+                    <div className="StoryCover-roles">{renderRoles()}</div>
                 </div>
             </div>
         </section>
