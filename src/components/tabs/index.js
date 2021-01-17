@@ -23,6 +23,7 @@ const Tabs = (props) => {
     const renderHeaders = () =>
         headers.map((header, index) => (
             <button
+                aria-label={header}
                 key={'tab-header-' + index}
                 className={`Tabs-header ${
                     currentTab === index ? 'active' : ''

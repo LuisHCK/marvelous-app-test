@@ -15,7 +15,11 @@ function FavoriteButton(props) {
     }
 
     return (
-        <button className="FavoriteButton" onClick={handleClick}>
+        <button
+            aria-label="Favorite button"
+            className="FavoriteButton"
+            onClick={handleClick}
+        >
             <i className={`${active ? 'fas' : 'far'} fa-heart`} />
         </button>
     )
