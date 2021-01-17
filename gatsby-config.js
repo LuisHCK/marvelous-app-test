@@ -17,6 +17,7 @@ module.exports = {
             options: {
                 icon: 'src/images/icon.png',
                 short_name: `MarvelousApp`,
+                name: "Marvelous App",
                 start_url: `/`,
                 background_color: `#663399`,
                 theme_color: `#663399`,
