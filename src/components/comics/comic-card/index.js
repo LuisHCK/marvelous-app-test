@@ -21,7 +21,7 @@ export default function ComicCard(props) {
 
     useEffect(() => {
         setFavorite(isComicFavorite(id))
-    }, [])
+    }, [id])
 
     const comicURL = buildPath('/comic', `?id=${id}`)
 

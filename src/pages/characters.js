@@ -69,6 +69,8 @@ function Characters() {
     const handleNext = () => {
         setHasMore(false)
 
+        clearTimeout(loadNextTimeout)
+
         loadNextTimeout = setTimeout(() => {
             setOffset((prev) => prev + 20)
         }, 500)

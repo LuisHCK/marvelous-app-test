@@ -11,7 +11,6 @@ import ComicImages from '../components/comics/comic-images'
 
 export default function Comic(props) {
     const { location } = props
-    const [loadingState, setLoadingState] = useState(true)
     const [comic, setComic] = useState({})
 
     const queryParams = new URLSearchParams(location.search)
@@ -19,14 +18,12 @@ export default function Comic(props) {
 
     useEffect(() => {
         const getComicData = async () => {
-            setLoadingState(true)
             const { data } = await getComicById(comicId)
             setComic(data?.data.results ? data?.data.results[0] : {})
-            setLoadingState(false)
         }
 
         getComicData()
-    }, [])
+    }, [comicId])
 
     return (
         <Fragment>

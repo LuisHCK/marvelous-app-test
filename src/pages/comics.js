@@ -24,28 +24,32 @@ export default function Comics() {
     const [hasMore, setHasMore] = useState(false)
 
     useEffect(() => {
+        /**
+         * Get comics list from API
+         */
+        const getComicsList = async () => {
+            setLoadingState(true)
+            setHasMore(true)
+
+            try {
+                const { data } = await getComics({
+                    ...filters,
+                    ...search,
+                    offset,
+                })
+                setComics((prev) => [...prev, ...data?.data.results])
+            } catch (error) {
+                setLoadingState(false)
+                setHasMore(false)
+                console.error(error)
+            }
+
+            setLoadingState(false)
+        }
+
         getComicsList()
         return () => {}
     }, [filters, search, offset])
-
-    /**
-     * Get comics list from API
-     */
-    const getComicsList = async () => {
-        setLoadingState(true)
-        setHasMore(true)
-
-        try {
-            const { data } = await getComics({ ...filters, ...search, offset })
-            setComics((prev) => [...prev, ...data?.data.results])
-        } catch (error) {
-            setLoadingState(false)
-            setHasMore(false)
-            console.error(error)
-        }
-
-        setLoadingState(false)
-    }
 
     const handleFilters = ({ field, value }) => {
         if (value && value !== 'all') {
@@ -67,6 +71,8 @@ export default function Comics() {
 
     const handleNext = () => {
         setHasMore(false)
+
+        clearTimeout(loadNextTimeout)
 
         loadNextTimeout = setTimeout(() => {
             setOffset((prev) => prev + 20)

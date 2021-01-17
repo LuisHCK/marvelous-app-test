@@ -6,7 +6,6 @@ import PageCover from '../components/page-cover'
 import CharacterCard from '../components/characters/characters-card'
 import StoryCard from '../components/stories/story-card'
 import '../assets/scss/pages/home/home.scss'
-import { getThumbnailURL } from '../utils/thumbnails'
 import { loadData as loadFavoritesData } from '../services/favorites.service'
 import NoContent from '../components/no-content'
 

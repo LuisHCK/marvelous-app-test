@@ -15,7 +15,7 @@ function StoryCard(props) {
 
     useEffect(() => {
         setFavorite(isStoryFavorite(id))
-    }, [])
+    }, [id])
 
     const storyURL = buildPath('/story', `?id=${id}`)
 

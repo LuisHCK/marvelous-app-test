@@ -14,7 +14,7 @@ function CharacterCard(props) {
 
     useEffect(() => {
         setFavorite(isCharacterFavorite(id))
-    }, [])
+    }, [id])
 
     const renderFavoriteButton = () => (
         <FavoriteButton active={favorite} onClick={saveFavorite} />
