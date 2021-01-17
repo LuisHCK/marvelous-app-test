@@ -1,6 +1,5 @@
-import React from 'react'
-
 // Styles
+import React from 'react'
 import '../../assets/scss/components/navbar/navbar.scss'
 
 function NavBar() {
