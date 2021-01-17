@@ -4,7 +4,11 @@ import LazyLoad from 'react-lazyload'
 import { buildPath } from '../../../services/api.service'
 import ImagePlaceHolder from './image-placeholder'
 import FavoriteButton from '../../favorite-button'
-import { addComic, isComicFavorite, removeComic } from '../../../services/favorites.service'
+import {
+    addComic,
+    isComicFavorite,
+    removeComic,
+} from '../../../services/favorites.service'
 import '../../../assets/scss/components/comic-card/comic-card.scss'
 
 export default function ComicCard(props) {
@@ -58,7 +62,11 @@ export default function ComicCard(props) {
             {renderFormat()}
             {renderFavoriteButton()}
 
-            <a href={comicURL} className="ComicCard-coverContainer">
+            <a
+                href={comicURL}
+                className="ComicCard-coverContainer"
+                aria-label={title}
+            >
                 <LazyLoad
                     placeholder={<ImagePlaceHolder />}
                     classNamePrefix="ComicCard"

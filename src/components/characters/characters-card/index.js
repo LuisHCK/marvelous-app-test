@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import LazyLoad from 'react-lazyload'
 import { buildPath } from '../../../services/api.service'
-import { addCharacter, isCharacterFavorite, removeCharacter } from '../../../services/favorites.service'
+import {
+    addCharacter,
+    isCharacterFavorite,
+    removeCharacter,
+} from '../../../services/favorites.service'
 import FavoriteButton from '../../favorite-button'
 import '../../../assets/scss/components/character-card/character-card.scss'
 
@@ -34,7 +38,11 @@ function CharacterCard(props) {
     return (
         <div className="CharacterCard">
             {renderFavoriteButton()}
-            <a href={characterURL} className="CharacterCard-imageContainer">
+            <a
+                href={characterURL}
+                className="CharacterCard-imageContainer"
+                aria-label={name}
+            >
                 <LazyLoad classNamePrefix="CharacterCard" once>
                     <img
                         className="CharacterCard-image"

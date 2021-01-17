@@ -39,7 +39,11 @@ function StoryCard(props) {
     return (
         <div className="StoryCard">
             {renderFavoriteButton()}
-            <a href={storyURL} className="StoryCard-imageContainer">
+            <a
+                href={storyURL}
+                className="StoryCard-imageContainer"
+                aria-label={name}
+            >
                 {name}
             </a>
 
