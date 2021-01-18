@@ -11,6 +11,7 @@ import CharacterCard from '../components/characters/characters-card'
 import StoryCard from '../components/stories/story-card'
 import '../assets/scss/pages/home/home.scss'
 import { getThumbnailURL } from '../utils/thumbnails'
+import NoContent from '../components/no-content'
 
 export default function IndexPage() {
     const [loadingState, setLoadingState] = useState({
@@ -35,13 +36,21 @@ export default function IndexPage() {
      * Get featured comics
      */
     const getFeaturedComics = async () => {
-        const { data } = await getComics({
-            limit: 4,
-            orderBy: '-focDate',
-            format: 'comic',
-        })
+        try {
+            const { data } = await getComics({
+                limit: 4,
+                orderBy: '-focDate',
+                format: 'comic',
+            })
 
-        setFeaturedComics(data?.data.results)
+            setFeaturedComics(data?.data.results)
+        } catch (error) {
+            console.error(error)
+            setLoadingState((prev) => {
+                return { ...prev, featuredComics: false }
+            })
+        }
+
         setLoadingState((prev) => {
             return { ...prev, featuredComics: false }
         })
@@ -51,12 +60,20 @@ export default function IndexPage() {
      * Get popular comics
      */
     const getPopularCharacters = async () => {
-        const { data } = await getCharacters({
-            limit: 8,
-            modifiedSince: '2020-01-14T18:14:49.856Z',
-        })
+        try {
+            const { data } = await getCharacters({
+                limit: 8,
+                modifiedSince: '2020-01-14T18:14:49.856Z',
+            })
 
-        setPopularCharacters(data?.data.results)
+            setPopularCharacters(data?.data.results)
+        } catch (error) {
+            console.error(error)
+            setLoadingState((prev) => {
+                return { ...prev, popularCharacters: false }
+            })
+        }
+
         setLoadingState((prev) => {
             return { ...prev, popularCharacters: false }
         })
@@ -66,12 +83,20 @@ export default function IndexPage() {
      * Get new stories
      */
     const getNewStories = async () => {
-        const { data } = await getStories({
-            limit: 4,
-            orderBy: '-id',
-        })
+        try {
+            const { data } = await getStories({
+                limit: 4,
+                orderBy: '-id',
+            })
 
-        setNewStories(data?.data.results)
+            setNewStories(data?.data.results)
+        } catch (error) {
+            console.error(error)
+            setLoadingState((prev) => {
+                return { ...prev, newStories: false }
+            })
+        }
+
         setLoadingState((prev) => {
             return { ...prev, newStories: false }
         })
@@ -90,6 +115,7 @@ export default function IndexPage() {
                 title={comic.title}
                 thumbnail={getThumbnailURL(comic.thumbnail)}
                 creators={comic.creators?.items}
+                scrollContainer=""
             />
         ))
 
@@ -103,6 +129,7 @@ export default function IndexPage() {
                 id={character.id}
                 name={character.name}
                 thumbnail={getThumbnailURL(character.thumbnail)}
+                scrollContainer=""
             />
         ))
 
@@ -135,6 +162,12 @@ export default function IndexPage() {
 
                         <div className="ContentRow">
                             {loadingState.featuredComics ? <Spinner /> : null}
+
+                            {!loadingState.featuredComics &&
+                            !featuredComics.length ? (
+                                <NoContent />
+                            ) : null}
+
                             {renderComicCards()}
                         </div>
                     </section>
@@ -147,6 +180,11 @@ export default function IndexPage() {
                                 <Spinner />
                             ) : null}
 
+                            {!loadingState.popularCharacters &&
+                            !popularCharacters.length ? (
+                                <NoContent />
+                            ) : null}
+
                             {renderCharacterCards()}
                         </div>
                     </section>
@@ -156,6 +194,11 @@ export default function IndexPage() {
 
                         <div className="ContentRow">
                             {loadingState.newStories ? <Spinner /> : null}
+
+                            {!loadingState.newStories && !newStories.length ? (
+                                <NoContent />
+                            ) : null}
+
                             {renderStoryCards()}
                         </div>
                     </section>

@@ -12,7 +12,7 @@ import '../../../assets/scss/components/character-card/character-card.scss'
 import { Link } from 'gatsby'
 
 function CharacterCard(props) {
-    const { id, thumbnail, name, onFavoriteChange } = props
+    const { id, thumbnail, name, onFavoriteChange, scrollContainer } = props
     const [favorite, setFavorite] = useState(false)
 
     const characterURL = buildPath('/character', `?id=${id}`)
@@ -46,7 +46,7 @@ function CharacterCard(props) {
             >
                 <LazyLoad
                     classNamePrefix="CharacterCard"
-                    scrollContainer=".ContentScroll"
+                    scrollContainer={scrollContainer}
                     once
                 >
                     <img
@@ -70,10 +70,12 @@ CharacterCard.propTypes = {
     thumbnail: PropTypes.string,
     name: PropTypes.string.isRequired,
     onFavoriteChange: PropTypes.func,
+    scrollContainer: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 }
 
 CharacterCard.defaultProps = {
     onFavoriteChange: () => {},
+    scrollContainer: '.ContentScroll',
 }
 
 export default CharacterCard

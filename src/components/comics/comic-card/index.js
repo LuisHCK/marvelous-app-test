@@ -21,6 +21,7 @@ export default function ComicCard(props) {
         format,
         issueNumber,
         onFavoriteChange,
+        scrollContainer,
     } = props
     const [favorite, setFavorite] = useState(false)
 
@@ -72,7 +73,7 @@ export default function ComicCard(props) {
                     placeholder={<ImagePlaceHolder />}
                     classNamePrefix="ComicCard"
                     throttle={50}
-                    scrollContainer=".ContentScroll"
+                    scrollContainer={scrollContainer}
                     once
                 >
                     <img
@@ -112,8 +113,10 @@ ComicCard.propTypes = {
     format: PropTypes.string,
     favorite: PropTypes.bool,
     onFavoriteChange: PropTypes.func,
+    scrollContainer: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 }
 
 ComicCard.defaultProps = {
     onFavoriteChange: () => {},
+    scrollContainer: '.ContentScroll',
 }

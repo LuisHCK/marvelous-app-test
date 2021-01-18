@@ -40,6 +40,7 @@ export default function Favorites() {
                 creators={comic.creators}
                 onFavoriteChange={loadFavorites}
                 favorite={true}
+                scrollContainer=""
             />
         ))
 
@@ -54,6 +55,7 @@ export default function Favorites() {
                 name={character.name}
                 thumbnail={character.thumbnail}
                 onFavoriteChange={loadFavorites}
+                scrollContainer=""
             />
         ))
 
