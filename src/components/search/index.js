@@ -31,10 +31,16 @@ export default function Search(props) {
         useSelect ? (
             // jsx-a11y/no-onchange is deprecated but eslint still marking as warning
             // eslint-disable-next-line jsx-a11y/no-onchange
-            <select defaultValue="title" name="field" onChange={handleSelect}>
-                <option value="titleStartsWith">Title</option>
-                <option value="issueNumber">Issue number</option>
-            </select>
+            <label aria-label={`Select field`}>
+                <select
+                    defaultValue="title"
+                    name="field"
+                    onChange={handleSelect}
+                >
+                    <option value="titleStartsWith">Title</option>
+                    <option value="issueNumber">Issue number</option>
+                </select>
+            </label>
         ) : null
 
     return (
@@ -42,11 +48,14 @@ export default function Search(props) {
             <div className="Controls-search">
                 {renderSelect()}
 
-                <input
-                    type="search"
-                    placeholder="Search"
-                    onInput={handleInput}
-                />
+                <label aria-label="Search input">
+                    <input
+                        type="search"
+                        placeholder="Search"
+                        onInput={handleInput}
+                    />
+                </label>
+
                 <i className="fas fa-search" />
             </div>
         </div>

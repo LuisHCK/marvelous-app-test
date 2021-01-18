@@ -44,7 +44,7 @@ function NavBar() {
             <nav className="NavBar">
                 <div className="NavBar-logoContainer">
                     <Link to="/" className="NavBar-logo">
-                        <span className="sr-only">Navigation bar logo</span>
+                        <span aria-label="Navigation bar logo" />
                     </Link>
                 </div>
 

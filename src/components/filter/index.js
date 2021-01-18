@@ -19,18 +19,20 @@ function Filter(props) {
         <div className="Controls">
             {/* jsx-a11y/no-onchange is deprecated but eslint still marking as warning */}
             {/* eslint-disable-next-line jsx-a11y/no-onchange */}
-            <select
-                defaultValue="label"
-                name="Sort"
-                aria-label="Sort"
-                onChange={handleChange}
-            >
-                <option value="label" disabled>
-                    {label}
-                </option>
-                {renderOptions()}
-                <option value="all">All</option>
-            </select>
+            <label aria-label={`Sort by ${label}`}>
+                <select
+                    defaultValue="label"
+                    name="Sort"
+                    aria-label="Sort"
+                    onChange={handleChange}
+                >
+                    <option value="label" disabled>
+                        {label}
+                    </option>
+                    {renderOptions()}
+                    <option value="all">All</option>
+                </select>
+            </label>
         </div>
     )
 }
