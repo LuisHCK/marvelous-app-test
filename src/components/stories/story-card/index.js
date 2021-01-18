@@ -8,6 +8,7 @@ import {
 } from '../../../services/favorites.service'
 import '../../../assets/scss/components/story-card/story-card.scss'
 import FavoriteButton from '../../favorite-button'
+import { Link } from 'gatsby'
 
 function StoryCard(props) {
     const { id, name, comics, onFavoriteChange } = props
@@ -39,21 +40,21 @@ function StoryCard(props) {
     return (
         <div className="StoryCard">
             {renderFavoriteButton()}
-            <a
-                href={storyURL}
+            <Link
+                to={storyURL}
                 className="StoryCard-imageContainer"
                 aria-label={name}
             >
                 {name}
-            </a>
+            </Link>
 
-            <a className="StoryCard-name" href={storyURL}>
+            <Link className="StoryCard-name" to={storyURL}>
                 <h3>{name}</h3>
 
                 <span className="StoryCard-comicNames">
                     {renderComicNames()}
                 </span>
-            </a>
+            </Link>
         </div>
     )
 }

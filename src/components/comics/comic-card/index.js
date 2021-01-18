@@ -10,6 +10,7 @@ import {
     removeComic,
 } from '../../../services/favorites.service'
 import '../../../assets/scss/components/comic-card/comic-card.scss'
+import { Link } from 'gatsby'
 
 export default function ComicCard(props) {
     const {
@@ -62,8 +63,8 @@ export default function ComicCard(props) {
             {renderFormat()}
             {renderFavoriteButton()}
 
-            <a
-                href={comicURL}
+            <Link
+                to={comicURL}
                 className="ComicCard-coverContainer"
                 aria-label={title}
             >
@@ -80,12 +81,12 @@ export default function ComicCard(props) {
                         title={title}
                     />
                 </LazyLoad>
-            </a>
+            </Link>
 
             <div className="ComicCard-titleContainer">
-                <a className="ComicCard-title" href={comicURL}>
+                <Link className="ComicCard-title" to={comicURL}>
                     <h3>{title}</h3>
-                </a>
+                </Link>
 
                 <div className="ComicCard-footer">
                     <span className="ComicCard-creators">

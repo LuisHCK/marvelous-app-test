@@ -9,6 +9,7 @@ import {
 } from '../../../services/favorites.service'
 import FavoriteButton from '../../favorite-button'
 import '../../../assets/scss/components/character-card/character-card.scss'
+import { Link } from 'gatsby'
 
 function CharacterCard(props) {
     const { id, thumbnail, name, onFavoriteChange } = props
@@ -38,8 +39,8 @@ function CharacterCard(props) {
     return (
         <div className="CharacterCard">
             {renderFavoriteButton()}
-            <a
-                href={characterURL}
+            <Link
+                to={characterURL}
                 className="CharacterCard-imageContainer"
                 aria-label={name}
             >
@@ -51,11 +52,11 @@ function CharacterCard(props) {
                         title={name}
                     />
                 </LazyLoad>
-            </a>
+            </Link>
 
-            <a className="CharacterCard-name" href={characterURL}>
+            <Link className="CharacterCard-name" to={characterURL}>
                 <h3>{name}</h3>
-            </a>
+            </Link>
         </div>
     )
 }

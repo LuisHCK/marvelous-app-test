@@ -1,4 +1,5 @@
 // Styles
+import { Link } from 'gatsby'
 import React, { Fragment, useState } from 'react'
 import '../../assets/scss/components/navbar/navbar.scss'
 import MobileMenu from './mobile-menu'
@@ -11,29 +12,29 @@ function NavBar() {
     const menu = (
         <ul className="NavBar-menu">
             <li className="NavBar-menuItem">
-                <a className="NavBar-link" href="/">
+                <Link className="NavBar-link" to="/">
                     Home
-                </a>
+                </Link>
             </li>
             <li className="NavBar-menuItem">
-                <a className="NavBar-link" href="/comics">
+                <Link className="NavBar-link" to="/comics">
                     Comics
-                </a>
+                </Link>
             </li>
             <li className="NavBar-menuItem">
-                <a className="NavBar-link" href="/characters">
+                <Link className="NavBar-link" to="/characters">
                     Characters
-                </a>
+                </Link>
             </li>
             <li className="NavBar-menuItem">
-                <a className="NavBar-link" href="/stories">
+                <Link className="NavBar-link" to="/stories">
                     Stories
-                </a>
+                </Link>
             </li>
             <li className="NavBar-menuItem">
-                <a className="NavBar-link" href="/favorites">
+                <Link className="NavBar-link" to="/favorites">
                     Favorites
-                </a>
+                </Link>
             </li>
         </ul>
     )
@@ -42,9 +43,9 @@ function NavBar() {
         <Fragment>
             <nav className="NavBar">
                 <div className="NavBar-logoContainer">
-                    <a href="/" className="NavBar-logo">
+                    <Link to="/" className="NavBar-logo">
                         <span className="sr-only">Navigation bar logo</span>
-                    </a>
+                    </Link>
                 </div>
 
                 {menu}
