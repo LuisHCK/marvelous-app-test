@@ -77,23 +77,27 @@ function Characters() {
     }
 
     const renderCharacterCards = () => (
-        <InfiniteScroll
-            dataLength={characters.length}
-            next={handleNext}
-            hasMore={hasMore}
-            loader={<Spinner />}
-        >
-            <section className="ContentRow">
-                {characters.map((character, index) => (
-                    <CharacterCard
-                        key={'popular-character-' + index}
-                        id={character.id}
-                        name={character.name}
-                        thumbnail={getThumbnailURL(character.thumbnail)}
-                    />
-                ))}
-            </section>
-        </InfiniteScroll>
+        <section className="ContentScroll" id="characters-scroll">
+            <InfiniteScroll
+                dataLength={characters.length}
+                next={handleNext}
+                hasMore={hasMore}
+                loader={<Spinner />}
+                scrollableTarget="characters-scroll"
+                className="Page"
+            >
+                <div className="ContentRow">
+                    {characters.map((character, index) => (
+                        <CharacterCard
+                            key={'popular-character-' + index}
+                            id={character.id}
+                            name={character.name}
+                            thumbnail={getThumbnailURL(character.thumbnail)}
+                        />
+                    ))}
+                </div>
+            </InfiniteScroll>
+        </section>
     )
 
     const renderNoContent = () =>
@@ -107,8 +111,8 @@ function Characters() {
                     <h1>Marvel Characters</h1>
                 </PageCover>
 
-                <main className="Page">
-                    <section>
+                <main>
+                    <section className="Page">
                         <div className="CharacterPage-header">
                             <h2>Characters List</h2>
 

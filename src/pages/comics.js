@@ -80,26 +80,30 @@ export default function Comics() {
     }
 
     const renderComicCards = () => (
-        <InfiniteScroll
-            dataLength={comics.length}
-            next={handleNext}
-            hasMore={hasMore}
-            loader={<Spinner />}
-        >
-            <section className="ContentRow">
-                {comics?.map((comic, index) => (
-                    <ComicCard
-                        key={'comic-card-' + index}
-                        id={comic.id}
-                        title={comic.title}
-                        thumbnail={getThumbnailURL(comic.thumbnail)}
-                        creators={comic.creators?.items}
-                        format={comic.format}
-                        issueNumber={comic.issueNumber}
-                    />
-                ))}
-            </section>
-        </InfiniteScroll>
+        <section className="ContentScroll" id="comics-scroll">
+            <InfiniteScroll
+                dataLength={comics.length}
+                next={handleNext}
+                hasMore={hasMore}
+                loader={<Spinner />}
+                className="Page"
+                scrollableTarget="comics-scroll"
+            >
+                <div className="ContentRow">
+                    {comics?.map((comic, index) => (
+                        <ComicCard
+                            key={'comic-card-' + index}
+                            id={comic.id}
+                            title={comic.title}
+                            thumbnail={getThumbnailURL(comic.thumbnail)}
+                            creators={comic.creators?.items}
+                            format={comic.format}
+                            issueNumber={comic.issueNumber}
+                        />
+                    ))}
+                </div>
+            </InfiniteScroll>
+        </section>
     )
 
     const renderNoContent = () =>
@@ -114,8 +118,8 @@ export default function Comics() {
                     <h1>Marvel Comics</h1>
                 </PageCover>
 
-                <main className="Page ComicsPage">
-                    <section>
+                <main className="ComicsPage">
+                    <section className="Page">
                         <div className="ComicsPage-header">
                             <h2>Comics List</h2>
 
@@ -139,11 +143,9 @@ export default function Comics() {
                                 />
                             </div>
                         </div>
-
-                        <div className="Centered">{renderNoContent()}</div>
-
-                        {renderComicCards()}
                     </section>
+                    <div className="Centered">{renderNoContent()}</div>
+                    {renderComicCards()}
                 </main>
             </Layout>
         </Fragment>

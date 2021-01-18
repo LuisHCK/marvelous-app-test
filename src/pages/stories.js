@@ -64,24 +64,28 @@ function Stories() {
     }
 
     const renderStoriesCards = () => (
-        <InfiniteScroll
-            dataLength={stories.length}
-            next={handleNext}
-            hasMore={hasMore}
-            loader={<Spinner />}
-        >
-            <section className="ContentRow">
-                {stories.map((story, index) => (
-                    <StoryCard
-                        key={'new-story-' + index}
-                        id={story.id}
-                        name={story.title}
-                        thumbnail={getThumbnailURL(story.thumbnail)}
-                        comics={story.comics?.items}
-                    />
-                ))}
-            </section>
-        </InfiniteScroll>
+        <section className="ContentScroll" id="stories-scroll">
+            <InfiniteScroll
+                dataLength={stories.length}
+                next={handleNext}
+                hasMore={hasMore}
+                loader={<Spinner />}
+                className="Page"
+                scrollableTarget="stories-scroll"
+            >
+                <section className="ContentRow">
+                    {stories.map((story, index) => (
+                        <StoryCard
+                            key={'new-story-' + index}
+                            id={story.id}
+                            name={story.title}
+                            thumbnail={getThumbnailURL(story.thumbnail)}
+                            comics={story.comics?.items}
+                        />
+                    ))}
+                </section>
+            </InfiniteScroll>
+        </section>
     )
 
     const renderNoContent = () =>
