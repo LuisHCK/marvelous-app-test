@@ -44,7 +44,11 @@ function CharacterCard(props) {
                 className="CharacterCard-imageContainer"
                 aria-label={name}
             >
-                <LazyLoad classNamePrefix="CharacterCard" once>
+                <LazyLoad
+                    classNamePrefix="CharacterCard"
+                    scrollContainer=".ContentScroll"
+                    once
+                >
                     <img
                         className="CharacterCard-image"
                         src={thumbnail}

@@ -29,9 +29,9 @@ export default function Search(props) {
 
     const renderSelect = () =>
         useSelect ? (
-            // jsx-a11y/no-onchange is deprecated but eslint still marking as warning
-            // eslint-disable-next-line jsx-a11y/no-onchange
             <label aria-label={`Select field`}>
+                {/* jsx-a11y/no-onchange is deprecated but eslint still marking as warning */}
+                {/* eslint-disable-next-line jsx-a11y/no-onchange */}
                 <select
                     defaultValue="title"
                     name="field"

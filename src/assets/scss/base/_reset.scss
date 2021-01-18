@@ -32,11 +32,23 @@ select {
     font-size: 14px;
     font-family: $secondary-font;
     border: 1px solid $light;
-    padding: 5px 5px;
+    padding: 5px 10px;
     border-radius: 32px;
     outline: none;
     width: 128px;
     height: 32px;
+    position: relative;
+
+    -o-appearance: none;
+    -ms-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    background-image: url("../../img/chevron-down.svg");
+    background-size: 14px 14px;
+    background-repeat: no-repeat;
+    background-position: center right 15px; 
 
     option {
         color: $dark;

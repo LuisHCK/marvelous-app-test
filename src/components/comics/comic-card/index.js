@@ -71,7 +71,8 @@ export default function ComicCard(props) {
                 <LazyLoad
                     placeholder={<ImagePlaceHolder />}
                     classNamePrefix="ComicCard"
-                    throttle={300}
+                    throttle={50}
+                    scrollContainer=".ContentScroll"
                     once
                 >
                     <img
