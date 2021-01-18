@@ -1,48 +1,43 @@
 <p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
+  <a href="https://marverlous-app-test.netlify.app/">
+    <img alt="App Icon" src="https://github.com/LuisHCK/marvelous-app-test/blob/main/src/images/icon.png?raw=true" width="60" />
   </a>
 </p>
 <h1 align="center">
-  Gatsby minimal starter
+  Marvelous App
 </h1>
 
 ## 🚀 Quick start
 
-1.  **Create a Gatsby site.**
-
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+1.  **Clone the repo**
 
     ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
+    # Clone using SSH
+    git clone git@github.com:LuisHCK/marvelous-app-test.git
+    
+    # Clone using https
+    git clone https://github.com/LuisHCK/marvelous-app-test.git
+    ```
+    
+2.  **Add your dotenv**
+    
+    ```shell
+    # .env.develop and .env.production
+    GATSBY_APIKEY=my-sexy-api-key
+    GATSBY_SERVER_URL=https://gateway.marvel.com/v1/public/
     ```
 
-2.  **Start developing.**
+3.  **Start developing with docker.**
 
     Navigate into your new site’s directory and start it up.
 
     ```shell
-    cd my-gatsby-site/
-    npm run develop
+    cd marvelous-app-test/
+    docker-compose up --buil
     ```
 
-3.  **Open the code and start customizing!**
+4.  **Open the code and start customizing!**
 
     Your site is now running at http://localhost:8000!
 
     Edit `src/pages/index.js` to see your site update in real-time!
-
-4.  **Learn more**
-
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
