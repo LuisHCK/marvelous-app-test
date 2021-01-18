@@ -25,7 +25,7 @@ function MobileMenu(props) {
     return (
         <div className={`NavBar-mobileMenu ${openClassName}`}>
             <div className="NavBar-mobileMenuToggle">
-                <button onClick={toggle}>
+                <button onClick={toggle} aria-label="Close menu">
                     <i className="fas fa-times" />
                 </button>
             </div>

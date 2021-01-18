@@ -84,7 +84,7 @@ export default function ComicCard(props) {
 
             <div className="ComicCard-titleContainer">
                 <a className="ComicCard-title" href={comicURL}>
-                    <h5>{title}</h5>
+                    <h3>{title}</h3>
                 </a>
 
                 <div className="ComicCard-footer">

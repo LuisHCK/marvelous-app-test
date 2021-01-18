@@ -48,7 +48,7 @@ function StoryCard(props) {
             </a>
 
             <a className="StoryCard-name" href={storyURL}>
-                <h5>{name}</h5>
+                <h3>{name}</h3>
 
                 <span className="StoryCard-comicNames">
                     {renderComicNames()}

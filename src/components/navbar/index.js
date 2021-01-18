@@ -42,7 +42,7 @@ function NavBar() {
         <Fragment>
             <nav className="NavBar">
                 <div className="NavBar-logoContainer">
-                    <a href="/" className="NavBar-logo" aria-hidden>
+                    <a href="/" className="NavBar-logo">
                         <span className="sr-only">Navigation bar logo</span>
                     </a>
                 </div>

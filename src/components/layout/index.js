@@ -22,19 +22,7 @@ export default function Layout({ children, useNavBar, useFooter }) {
                     src="https://kit.fontawesome.com/87131fda1b.js"
                     crossorigin="anonymous"
                     async
-                />
-                <link rel="preconnect" href="https://fonts.gstatic.com" />
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-                    rel="stylesheet"
-                    async
-                />
-
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Roboto:wght@400;500;700&display=swap"
-                    rel="stylesheet"
-                    async
-                />
+                ></script>
             </Helmet>
         </Fragment>
     )

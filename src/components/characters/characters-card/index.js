@@ -54,7 +54,7 @@ function CharacterCard(props) {
             </a>
 
             <a className="CharacterCard-name" href={characterURL}>
-                <h5>{name}</h5>
+                <h3>{name}</h3>
             </a>
         </div>
     )
