@@ -15,7 +15,6 @@
         "clean": "gatsby clean"
     },
     "dependencies": {
-        "@loadable/component": "^5.14.1",
         "axios": "^0.21.1",
         "gatsby": "^2.26.1",
         "gatsby-image": "^2.9.0",
