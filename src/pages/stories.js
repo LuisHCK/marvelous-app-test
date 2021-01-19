@@ -99,8 +99,8 @@ function Stories() {
                     <h1>Marvel Stories</h1>
                 </PageCover>
 
-                <main className="Page">
-                    <section>
+                <main>
+                    <section className="Page">
                         <div className="StoriesPage-header">
                             <h2>Stories List</h2>
 
