@@ -9,6 +9,10 @@
 
 A [GatsbyJS](https://www.gatsbyjs.com/) test project that consumes Marvel's public API
 
+## 🚀 [Live Demo](https://marverlous-app-test.netlify.app/)
+
+&nbsp;
+
 ## 👾 Libraries used
 
 - [axios](https://github.com/axios/axios): HTTP Client
@@ -16,7 +20,7 @@ A [GatsbyJS](https://www.gatsbyjs.com/) test project that consumes Marvel's publ
 - [react-infinite-scroll-component](https://github.com/ankeetmaini/react-infinite-scroll-component): Infinite scroll
 - [sass](https://github.com/sass/dart-sass): CSS Pre-processor
 
-## 🚀 Quick start
+## 👨‍💻 Quick start
 
 1.  **Clone the repo**
 
