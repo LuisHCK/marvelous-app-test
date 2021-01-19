@@ -31,6 +31,7 @@ export default function StoryComics(props) {
                 title={comic.title}
                 thumbnail={getThumbnailURL(comic.thumbnail)}
                 creators={comic.creators?.items}
+                scrollContainer=""
             />
         ))
 

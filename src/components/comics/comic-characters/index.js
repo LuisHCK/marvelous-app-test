@@ -35,6 +35,7 @@ function ComicCharacters(props) {
                 id={character.id}
                 name={character.name}
                 thumbnail={getThumbnailURL(character.thumbnail)}
+                scrollContainer=""
             />
         ))
 
