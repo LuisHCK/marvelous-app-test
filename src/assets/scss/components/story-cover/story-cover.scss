@@ -70,6 +70,10 @@
             font-family: $secondary-font;
             font-size: 1.4em;
             text-transform: capitalize;
+
+            @include for-phone-only {
+                font-size: 1.2em;
+            }
         }
     }
 

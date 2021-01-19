@@ -83,6 +83,10 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
 
+    @include for-phone-only {
+        max-height: 80vh;
+    }
+
     &::-webkit-scrollbar {
         display: none;
     }
